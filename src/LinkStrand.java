@@ -60,7 +60,9 @@ public class LinkStrand implements IDnaStrand
     public IDnaStrand reverse() {
         Node rev = null;
         Node list = myFirst;
+        int num=0;
         while (list != null) {
+            num++;
             StringBuilder str = new StringBuilder();
             Node temp = list.next;
             list.next = rev;
@@ -71,16 +73,20 @@ public class LinkStrand implements IDnaStrand
             String s = str.toString();
             rev.info=s;
         }
-
-        LinkStrand link = new LinkStrand(rev.info);
-        rev= rev.next;
-        while(rev != null)
+        if(num>1)
         {
-            link.append(rev.info);
+            LinkStrand link = new LinkStrand(rev.info);
             rev= rev.next;
+            while(rev != null)
+            {
+                link.append(rev.info);
+                rev= rev.next;
+            }
+            return link;
         }
 
-        return link;
+
+        return this;
     }
 
     @Override
