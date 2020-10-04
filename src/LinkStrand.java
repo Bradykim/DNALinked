@@ -39,6 +39,7 @@ public class LinkStrand implements IDnaStrand
         myAppends=0;
         myLocalIndex=0;
         myCurrent=myFirst;
+        myIndex=0;
 
     }
 
