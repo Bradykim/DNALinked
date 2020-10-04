@@ -92,7 +92,7 @@ public class LinkStrand implements IDnaStrand
     @Override
     public char charAt(int index) {
 
-        if(index == -1){
+        if(index < 0){
             throw new IndexOutOfBoundsException();
         }
         int previousstartindex = myIndex-myLocalIndex;
