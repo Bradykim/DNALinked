@@ -17,20 +17,39 @@ public class LinkStrand implements IDnaStrand
     private int myIndex;
     private int myLocalIndex;
 
+    /**
+     * Create a LinkStrand representing s. No error checking is done to see if s
+     * represents valid genomic/DNA data.
+     *
+     * @param s is the source of cgat data for this strand
+     */
     public LinkStrand(String s)
     {
         initialize(s);
     }
+
+
     public LinkStrand()
     {
         this("");
     }
+
+    /**
+     * @return number of String characters in in this LinkStrand object.
+     */
     @Override
     public long size() {
 
         return mySize;
     }
 
+    /**
+     * Initialize this strand so that it represents the value of source. No
+     * error checking is performed.
+     * Also initializes the value of each field in the LinkStrand class.
+     *
+     * @param source is the source of this enzyme
+     */
     @Override
     public void initialize(String source) {
         myFirst= new Node(source);
@@ -43,11 +62,22 @@ public class LinkStrand implements IDnaStrand
 
     }
 
+    /**
+     * Gets an instance of this LinkStrand.
+     *
+     * @param source is the source of this enzyme
+     */
     @Override
     public IDnaStrand getInstance(String source) {
         return new LinkStrand(source);
     }
 
+    /**
+     * Simply append a strand of dna data to this LinkStrand. No error checking is
+     * done. It adds a new Node with the given String to the list.
+     *
+     * @param dna is the String appended to this strand
+     */
     @Override
     public IDnaStrand append(String dna) {
         myLast.next= new Node(dna);
@@ -57,6 +87,13 @@ public class LinkStrand implements IDnaStrand
         return this;
     }
 
+    /**
+     * Takes a LinkStrand and reverses each node within the link and reverses
+     * each of the Strings in each node. This gets a total reversal of the entire dna
+     * set.
+     *
+     * @return LinkStrand that is the reverse of the original.
+     */
     @Override
     public IDnaStrand reverse() {
         Node rev = null;
@@ -85,11 +122,24 @@ public class LinkStrand implements IDnaStrand
 
     }
 
+    /**
+     * Returns the amount of times a new node has been appended to the end of the list.
+     *
+     * @return an int that is the number of times append has been called.
+     */
     @Override
     public int getAppendCount() {
         return myAppends;
     }
 
+    /**
+     * Takes an index number and searches through each String character
+     * in each node of the LinkStrand to find the character at that given
+     * index and returns the character.
+     *
+     * @param index is the index of the character within the LinkStrand
+     * @return the character at that given index within the LinkStrand
+     */
     @Override
     public char charAt(int index) {
 
@@ -120,6 +170,11 @@ public class LinkStrand implements IDnaStrand
 
     }
 
+    /**
+     * Returns the String value of this LinkStrand using the StringBuilder function.
+     *
+     * @return an String that has the same values as the strand it is applied to.
+     */
     @Override
     public String toString()
     {
